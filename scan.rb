@@ -66,9 +66,9 @@ IO.read(File.expand_path(wordlist_file)).split("\n").each do |virtual_host|
     next if ignore_http_codes.include?(response.code.to_i)
     next if ignore_content_length > 0 && ignore_content_length == response['content-length'].to_i
 
-    result << "Found: #{hostname} (#{response.code})\n"
+    result << "\e[4mFound\e[24m: \e[35m#{hostname} (#{response.code})\e[39m\n"
     response.to_hash.each do |header, values|
-      result << " #{header}:\n"
+      result << " #{header}:"
       values.each do |value|
         result << " #{value}\n"
       end
